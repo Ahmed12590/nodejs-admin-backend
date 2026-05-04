@@ -98,7 +98,7 @@ const styles = {
   },
   button: {
     width: "100%",
-    padding: "12px",
+    padding: "10px",
     background: "#007bff",
     color: "#fff",
     border: "none",
