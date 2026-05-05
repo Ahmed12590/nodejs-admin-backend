@@ -1,41 +1,37 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      // 👉 Backend API call (apni URL change kar lena)
       const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        // ✅ Token save (important)
         localStorage.setItem("token", data.token);
-
         alert("Login successful ✅");
-
-        // 👉 Dashboard redirect
         navigate("/dashboard");
       } else {
         alert(data.message || "Login failed ❌");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
       alert("Server error ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,6 +47,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             style={styles.input}
+            required
           />
 
           <input
@@ -59,12 +56,15 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
+            required
           />
 
-          <button type="submit" style={styles.button}>
-            Login
+          <button type="submit" style={styles.button} disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        <p style={styles.footer}>Secure Admin Access</p>
       </div>
     </div>
   );
@@ -76,14 +76,16 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#f4f4f4",
+    background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
   },
   card: {
     padding: "30px",
-    width: "300px",
-    background: "#fff",
-    borderRadius: "10px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    width: "320px",
+    background: "rgba(255,255,255,0.1)",
+    borderRadius: "15px",
+    backdropFilter: "blur(10px)",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+    color: "#fff",
   },
   title: {
     marginBottom: "20px",
@@ -91,20 +93,28 @@ const styles = {
   },
   input: {
     width: "100%",
-    padding: "10px",
+    padding: "12px",
     marginBottom: "15px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
+    borderRadius: "8px",
+    border: "none",
+    outline: "none",
+    background: "rgba(255,255,255,0.2)",
+    color: "#fff",
   },
   button: {
     width: "100%",
-    padding: "10px",
+    padding: "12px",
     background: "#007bff",
     color: "#fff",
     border: "none",
-    borderRadius: "5px",
+    borderRadius: "8px",
     cursor: "pointer",
+    fontWeight: "bold",
+  },
+  footer: {
+    marginTop: "15px",
+    textAlign: "center",
+    fontSize: "12px",
+    color: "#ccc",
   },
 };
-
-export default Login;
