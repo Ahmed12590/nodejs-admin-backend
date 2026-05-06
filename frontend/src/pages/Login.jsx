@@ -38,33 +38,32 @@ export default function Login() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Travel Admin Login ✈️</h2>
+        <h2 style={styles.heading}>User Login</h2>
+        <p style={styles.subheading}>Sign in to access your clients</p>
 
         <form onSubmit={handleLogin}>
+          <label style={styles.label}>Username</label>
           <input
             type="email"
-            placeholder="Enter Email"
+            placeholder="Enter username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             style={styles.input}
-            required
           />
 
+          <label style={styles.label}>Password</label>
           <input
             type="password"
-            placeholder="Enter Password"
+            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
-            required
           />
 
           <button type="submit" style={styles.button} disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-
-        <p style={styles.footer}>Secure Admin Access</p>
       </div>
     </div>
   );
@@ -76,45 +75,48 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+    background: "#020617", // 🔥 same dark background
   },
   card: {
+    width: "380px",
     padding: "30px",
-    width: "320px",
-    background: "rgba(255,255,255,0.1)",
-    borderRadius: "15px",
-    backdropFilter: "blur(10px)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "#fff",
+    borderRadius: "12px",
+    background: "#0f172a",
+    boxShadow: "0 0 30px rgba(0,0,0,0.5)",
   },
-  title: {
+  heading: {
+    color: "#fff",
+    marginBottom: "5px",
+  },
+  subheading: {
+    color: "#94a3b8",
     marginBottom: "20px",
-    textAlign: "center",
+    fontSize: "14px",
+  },
+  label: {
+    color: "#cbd5f5",
+    fontSize: "14px",
+    marginBottom: "5px",
+    display: "block",
   },
   input: {
     width: "100%",
     padding: "12px",
     marginBottom: "15px",
-    borderRadius: "8px",
-    border: "none",
-    outline: "none",
-    background: "rgba(255,255,255,0.2)",
+    borderRadius: "6px",
+    border: "1px solid #334155",
+    background: "#020617",
     color: "#fff",
+    outline: "none",
   },
   button: {
     width: "100%",
     padding: "12px",
-    background: "#007bff",
+    background: "#38bdf8",
     color: "#fff",
     border: "none",
-    borderRadius: "8px",
+    borderRadius: "6px",
     cursor: "pointer",
     fontWeight: "bold",
-  },
-  footer: {
-    marginTop: "15px",
-    textAlign: "center",
-    fontSize: "12px",
-    color: "#ccc",
   },
 };
