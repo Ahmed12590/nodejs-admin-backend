@@ -18,7 +18,7 @@ const Navbar = () => {
 const styles = {
   navbar: {
     height: "60px",
-    backgroundColor: "#01245E",
+    backgroundColor: "rgb(2, 6, 23)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",

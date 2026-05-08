@@ -17,7 +17,7 @@ const styles = {
   sidebar: {
     width: "220px",
     height: "100vh",
-    backgroundColor: "#001f4d",
+    backgroundColor: "rgb(2, 6, 23)",
     padding: "20px",
     display: "flex",
     flexDirection: "column",
