@@ -9,6 +9,8 @@ const Sidebar = () => {
       <Link to="/dashboard" style={styles.link}>Dashboard</Link>
       <Link to="/bookings" style={styles.link}>Bookings</Link>
       <Link to="/users" style={styles.link}>Users</Link>
+      <Link to="/add-package"style={styles.link}>Add Package</Link>
+      <Link to="/all-packages"style={styles.link}>All Packages</Link>
     </div>
   );
 };
