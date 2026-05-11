@@ -6,6 +6,7 @@ function AllPackages() {
     { id: 1, name: "Dubai Tour", price: "$500" },
     { id: 2, name: "Turkey Tour", price: "$800" },
     { id: 3, name: "Malaysia Tour", price: "$600" },
+    { id: 4, name: "Singapor Tour", price: "$600" },
   ];
 
   return (
